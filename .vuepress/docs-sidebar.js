@@ -86,7 +86,7 @@ module.exports = [
       'configuration/rules-ng',
       'configuration/eclipseiotmarket',
       ['configuration/restdocs', 'REST API'],
-      'apps/android',
+      ['apps/android', 'Android App'],
       'apps/ios',
       'apps/windows',
       ['ecosystem/alexa/', 'Amazon Alexa'],
@@ -135,6 +135,10 @@ module.exports = [
       'developer/contributing',
       'developer/governance',
       'developer/legacy/compatibilitylayer',
+      {
+        title: 'Javadoc',
+        path: 'https://next.openhab.org/javadoc/latest/'
+      }
     ]
   },
 ]
