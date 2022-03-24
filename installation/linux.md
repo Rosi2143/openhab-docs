@@ -69,11 +69,10 @@ Alternatively resort to the [manual installation approach](#manual-installation)
 
 {% include collapsible/body.html %}
 
-First, add the openHAB repository key to your package manager and allow Apt to use the HTTPS Protocol:
+First, add the openHAB repository key to your package manager:
 
 ```shell
 wget -qO - 'https://openhab.jfrog.io/artifactory/api/gpg/key/public' | sudo apt-key add -
-sudo apt-get install apt-transport-https
 ```
 
 Then, you can choose between, *Official (Stable)*, *Beta* or *Snapshot* builds:
@@ -90,7 +89,7 @@ Then, you can choose between, *Official (Stable)*, *Beta* or *Snapshot* builds:
 
 - **Testing Release**
 
-    The beta and release candidate builds come out less frequently, but will contain new features that are currently in the testing phase.
+    The beta and release candidate builds come out more frequently, but will contain new features that are currently in the testing phase.
 
     Add the **openHAB Beta Repository** to your systems apt sources list:
 
