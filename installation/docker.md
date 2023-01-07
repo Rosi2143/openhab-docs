@@ -10,10 +10,7 @@ Containerization allows one to run a server in its own isolated environment with
 
 This page is structured as follows:
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## Why Docker?
 
@@ -78,7 +75,7 @@ sudo chown -R openhab:openhab /opt/openhab
 ### Running the Container as a Service Managed by Docker
 
 Note, always review the README on [Docker Hub](https://hub.docker.com/r/openhab/openhab/) for the most up to date set of recommended arguments and environment variables.
-Services can be run an maintained on a Linux machine one of two ways, using Docker or using the system's built in service management (e.g. systemd).
+Services can be run and maintained on a Linux machine one of two ways, using Docker or using the system's built in service management (e.g. systemd).
 If using Docker to manage the service, run the following command:
 
 :::: tabs
@@ -202,7 +199,7 @@ Note, always review the README on [Docker Hub](https://hub.docker.com/r/openhab/
 - `--net=host` : by default Docker will place a container into its own network stack. However, openHAB requires UPnP discovery so this parameter makes the Docker container use the host's network stack.
 - `-v /etc/localtime:/etc/localtime:ro` : ties the time of the container to the host's time, read only so the container cannot change the host's time
 - `-v /etc/timezone:/etc/timezone:ro` : ties the timezone of the container to the host's time zone, read only so the container cannot change the host's time zone
-- `-v /opt/openhab/conf:/openhab/conf` : location of the conf folder for openHAB configurations (*Note:* you must create these folders on the host before running the container)
+- `-v /opt/openhab/conf:/openhab/conf` : location of the conf folder for openHAB configurations (_Note:_ you must create these folders on the host before running the container)
 - `-v /opt/openhab/userdata:/openhab/userdata` : location for logs, cache, persistence databases, etc.
 - `-v /opt/openhab/addons:/openhab/addons` : only needed if installing addons unavailable via UI or the Karaf Console
 - `-v /opt/openhab/.java:/openhab/.java` : needed by the Nest 1.x binding (and others?), location of the security token

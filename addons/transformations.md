@@ -59,6 +59,67 @@ Transformation files need to be placed in the directory `$OPENHAB_CONF/transform
     Transformations can be associated with channels, working on data being passed between bindings and Items. See [profile documentation]({{base}}/configuration/items.html#profiles) for more detail.
 
 To keep these examples simple, the contents of the referenced files `window_esp.map` and `convert-C-to-F.js` were left out.
+
+## `SCRIPT` Transformation
+
+The `SCRIPT` transformation is available from the framework and needs no additional installation.
+It allows transforming values using any of the available scripting languages in openHAB (JSR-223 or DSL).
+
+The script needs to be placed in the `$OPENHAB_CONF/transform` folder with an extension `.script` regardless of the actual script type.
+When referencing a transformation, the script type must be prepended to the filename (e.g. `dsl:stringlength.script` for the DSL version of `stringlength.script`).
+Please note that you cannot have transformations with the same name and different languages as the file-extension is always `script`.
+The script type depends on the scripting engine used, it is usually either the file extension or the MIME-type of the scripts.
+
+The input value is injected into the script context as a string variable `input`.
+The result needs to be returned from the script, it can be `null` or a value of a type that properly implements `.toString()`.
+Additional parameters can be injected in the script by adding them to the script identifier in URL style (`js.script:scale?correctionFactor=1.1&divider=10` would also inject `correctionFactor` and `divider`).
+
+The examples show a simple transformation with the same functionality for some languages.
+It takes the length of the input string and e.g. returns `String has 5 characters`.
+Given the filename `stringlength.script`, the transformation pattern is `SCRIPT(<script-type>:stringlength.script):%s`.
+
+:::: tabs
+
+::: tab DSL
+
+The script-prefix is `dsl`.
+
+```java
+var returnValue = "String has " + input.length + " characters"
+
+returnValue
+```
+
+:::
+
+::: tab Nashorn JS
+
+The script-prefix is `js`.
+
+```javascript
+(function(data) {
+  var returnValue = "String has " + data.length + " characters"
+  return returnValue
+})(input)
+```
+
+:::
+
+::: tab JRuby
+
+The script-prefix is `rb`.
+
+```ruby
+input ||= nil # see https://github.com/jruby/jruby/issues/5876
+"String has #{input.length} characters"
+```
+
+:::
+
+::::
+
+Currently the `SCRIPT` transformation is not available as profile.
+
 More details regarding this and other Transformation services can be found in the individual transformation articles linked below.
 
 ## Available Transformations

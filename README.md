@@ -1,16 +1,16 @@
-# openHAB 3.x Documentation Project
+# openHAB Documentation Project
 
 ## Introduction
 
-This repository contains the documentation for openHAB 3.x.
+This repository contains the documentation for openHAB.x.
 
 The result is available at [https://openhab.org/docs/](https://www.openhab.org/docs/) and [https://openhab.org/addons/](https://www.openhab.org/addons/).
 
 ## How it works
 
-In this repo you can find and improve all *general* documentation contents.
+In this repo you can find and improve all _general_ documentation contents.
 In fact that is all you can see in the `main` branch.
-There are also other *read-only* branches, which hold external content like the *add-ons* and *concepts* documentation.
+There are also other _read-only_ branches, which hold external content like the _add-ons_ and _concepts_ documentation.
 We will read about them later.
 
 ### So I can't improve an add-on article here?
@@ -32,7 +32,7 @@ The documentation is a community effort, so everyone is welcome to suggest chang
 This is done exactly the same way as for the code repositories, simply through pull requests against this repo.
 When editing a page through the _"Edit this page on GitHub"_ link on the website, you will be given the opportunity to
 create a pull request directly from GitHub.
-Please read our [contribution guidelines](CONTRIBUTING.md) and try to follow
+Please read our [contribution guidelines](.github/CONTRIBUTING.md) and try to follow
 them as best as you can before submitting a change for review - but don't worry if you don't understand all of them, we
 will help you to get it right.
 
@@ -44,7 +44,7 @@ You can read a bit more below about our external resources and how we get them.
 
 ### Automatically Generated Parts
 
-Those parts include __all__ add-on documentation files, no matter if they are from the `openhab-core` repo, the `openhab-addons` repo or any special binding repo like *habmin*, *zwave* or the *alexa skill*.
+Those parts include __all__ add-on documentation files, no matter if they are from the `openhab-core` repo, the `openhab-addons` repo or any special binding repo like _habmin_, _zwave_ or the _alexa skill_.
 
 We are keeping all those files at their original location, because it simply doesn't make sense to keep them here.
 Imagine you want to do an improvement of the zwave binding and have to update the readme file in a completely different place.
@@ -53,15 +53,15 @@ So we are saving time for everyone by keeping those files at their original loca
 
 ::: tip UNDER REVIEW
 
-The process below is subject to changes until the openHAB 3.x website become the production one.
+The process below is subject to changes until the openHAB.x website become the production one.
 
 :::
 
 ### How the documentation build works
 
 We have set up our [build server](https://ci.openhab.org/view/Documentation%20(3.x)/) to do the magic automatically.
-There are several triggers (mostly time based), which will then *gather the external contents* and move them to our [final](https://github.com/openhab/openhab-docs/tree/final) branch.
-You can find this migrated external content in the *final* branch under:
+There are several triggers (mostly time based), which will then _gather the external contents_ and move them to our [final](https://github.com/openhab/openhab-docs/tree/final) branch.
+You can find this migrated external content in the _final_ branch under:
 
 - `_addons_*`
 - `concepts`
@@ -71,16 +71,16 @@ The external content is updated by the following toolchain:
 
 - `update-external-resources.sh` → `pom.xml` → `process_addons.groovy`
 
-Everything that gets updated in the *master* branch will be also merged over to the *final* branch automatically.
-Afterwards we will redeploy the website with the latest content from the *final* branch at regular intervals.
+Everything that gets updated in the _master_ branch will be also merged over to the _final_ branch automatically.
+Afterwards we will redeploy the website with the latest content from the _final_ branch at regular intervals.
 
 #### Build triggers investigated
 
 There are two triggers available currently.
 The `merge docs` job is triggerd after something has been added to the documentation through this repository.
-The `gather external docs` job is started with a **succesful** build of the openhab-distribution.
-A succesful disribution build will include all of the latest changes that have been made to external sources like addons.
-So when a distribution build is succesful, we will trigger the gathering of all external sources.
+The `gather external docs` job is started with a __successful__ build of the openhab-distribution.
+A successful disribution build will include all of the latest changes that have been made to external sources like add-ons.
+So when a distribution build is successful, we will trigger the gathering of all external sources.
 
 When one of these jobs is finished, we will then notify our website hosting service to start a new website build.
 This is recognized due to new commits in the final branch of this repository.

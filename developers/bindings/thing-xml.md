@@ -5,17 +5,12 @@ title: Thing Descriptions
 
 # Binding Definitions
 
-{:.no_toc}
-
-In order to work with *Things* and *Channels*, some meta information about them is needed.
+In order to work with _Things_ and _Channels_, some meta information about them is needed.
 
 These are provided through 'ThingType' and 'ChannelType' definitions,
 which describe details about their functionality and configuration options.
 
-{::options toc_levels="2,3"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## ThingTypeProvider / ChannelTypeProvider
 
@@ -123,29 +118,33 @@ The following XML snippet shows a system channel type definition and thing type 
 
 There exist system-wide channel types that are available by default and which should be used whenever possible:
 
-| Channel Type ID       | Reference typeId             | Item Type            | Category         | Tags                      | Description                                                                                                                                                                                                             |
-|-----------------------|------------------------------|----------------------|------------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| signal-strength       | system.signal-strength       | Number               | QualityOfService | Measurement, Level        | Represents signal strength of a device as a Number with values 0, 1, 2, 3 or 4; 0 being worst strength and 4 being best strength.                                                                                       |
-| low-battery           | system.low-battery           | Switch               | LowBattery       | LowBattery, Energy        | Represents a low battery warning with possible values on (low battery) and off (battery ok).                                                                                                                            |
-| battery-level         | system.battery-level         | Number               | Battery          | Measurement, Energy       | Represents the battery level as a percentage (0-100%). Bindings for things supporting battery level in a different format (e.g. 4 levels) should convert to a percentage to provide a consistent battery level reading. |
-| power                 | system.power                 | Switch               | Switch           | Switch, Power             | Turn a device on/off.                                                                                                                                                                                                   |
-| brightness            | system.brightness            | Dimmer               | Light            | Control, Light            | Brightness of a bulb (0-100%).                                                                                                                                                                                          |
-| color                 | system.color                 | Color                | ColorLight       | Control, Light            | Color of a bulb.                                                                                                                                                                                                        |
-| color-temperature     | system.color-temperature     | Dimmer               | ColorLight       | Control, ColorTemperature | Color temperature of a bulb (0-100%). 0% should be the coldest setting (highest Kelvin value), 100 the warmest.                                                                                                         |
-| color-temperature-abs | system.color-temperature-abs | Number               | ColorLight       | Control, ColorTemperature | Color temperature of a bulb in Kelvin (1000K-10000K).                                                                                                                                                                   |
-| location              | system.location              | Location             | -                | Measurement               | Location in lat.,lon.,height coordinates.                                                                                                                                                                               |
-| motion                | system.motion                | Switch               | Motion           | Status, Presence          | Motion detected by the device (ON if motion is detected).                                                                                                                                                               |
-| mute                  | system.mute                  | Switch               | SoundVolume      | Switch, SoundVolume       | Turn on/off the volume of a device.                                                                                                                                                                                     |
-| volume                | system.volume                | Dimmer               | SoundVolume      | Control, SoundVolume      | Change the sound volume of a device (0-100%).                                                                                                                                                                           |
-| media-control         | system.media-control         | Player               | MediaControl     | Control                   | Control for a media player.                                                                                                                                                                                             |
-| media-title           | system.media-title           | String               | -                | Status                    | Title of a (played) media file.                                                                                                                                                                                         |
-| media-artist          | system.media-artist          | String               | -                | Status                    | Artist of a (played) media file.                                                                                                                                                                                        |
-| outdoor-temperature   | system.outdoor-temperature   | Number:Temperature   | Temperature      | Measurement, Temperature  | Current outdoor temperature.                                                                                                                                                                                            |
-| indoor-temperature    | system.indoor-temperature    | Number:Temperature   | Temperature      | Measurement, Temperature  | Current indoor temperature.                                                                                                                                                                                             |
-| wind-direction        | system.wind-direction        | Number:Angle         | Wind             | Measurement, Wind         | Wind direction in degrees (0-360°).                                                                                                                                                                                     |
-| wind-speed            | system.wind-speed            | Number:Speed         | Wind             | Measurement, Wind         | Wind speed                                                                                                                                                                                                              |
-| atmospheric-humidity  | system.atmospheric-humidity  | Number:Dimensionless | Humidity         | Measurement, Humidity     | Atmospheric humidity in percent.                                                                                                                                                                                        |
-| barometric-pressure   | system.barometric-pressure   | Number:Pressure      | Pressure         | Measurement, Pressure     | Barometric pressure                                                                                                                                                                                                     |
+| Channel Type ID       | Reference typeId             | Item Type                | Category         | Tags                      | Description                                                                                                                                                                                                             |
+|-----------------------|------------------------------|--------------------------|------------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| signal-strength       | system.signal-strength       | Number                   | QualityOfService | Measurement, Level        | Represents signal strength of a device as a Number with values 0, 1, 2, 3 or 4; 0 being worst strength and 4 being best strength.                                                                                       |
+| low-battery           | system.low-battery           | Switch                   | LowBattery       | LowBattery, Energy        | Represents a low battery warning with possible values on (low battery) and off (battery ok).                                                                                                                            |
+| battery-level         | system.battery-level         | Number                   | Battery          | Measurement, Energy       | Represents the battery level as a percentage (0-100%). Bindings for things supporting battery level in a different format (e.g. 4 levels) should convert to a percentage to provide a consistent battery level reading. |
+| power                 | system.power                 | Switch                   | Switch           | Switch, Power             | Turn a device on/off.                                                                                                                                                                                                   |
+| brightness            | system.brightness            | Dimmer                   | Light            | Control, Light            | Brightness of a bulb (0-100%).                                                                                                                                                                                          |
+| color                 | system.color                 | Color                    | ColorLight       | Control, Light            | Color of a bulb.                                                                                                                                                                                                        |
+| color-temperature     | system.color-temperature     | Dimmer                   | ColorLight       | Control, ColorTemperature | Color temperature of a bulb (0-100%). 0% should be the coldest setting (highest Kelvin value), 100 the warmest.                                                                                                         |
+| color-temperature-abs | system.color-temperature-abs | Number                   | ColorLight       | Control, ColorTemperature | Color temperature of a bulb in Kelvin (1000K-10000K).                                                                                                                                                                   |
+| location              | system.location              | Location                 | -                | Measurement               | Location in lat.,lon.,height coordinates.                                                                                                                                                                               |
+| motion                | system.motion                | Switch                   | Motion           | Status, Presence          | Motion detected by the device (ON if motion is detected).                                                                                                                                                               |
+| mute                  | system.mute                  | Switch                   | SoundVolume      | Switch, SoundVolume       | Turn on/off the volume of a device.                                                                                                                                                                                     |
+| volume                | system.volume                | Dimmer                   | SoundVolume      | Control, SoundVolume      | Change the sound volume of a device (0-100%).                                                                                                                                                                           |
+| media-control         | system.media-control         | Player                   | MediaControl     | Control                   | Control for a media player.                                                                                                                                                                                             |
+| media-title           | system.media-title           | String                   | -                | Status                    | Title of a (played) media file.                                                                                                                                                                                         |
+| media-artist          | system.media-artist          | String                   | -                | Status                    | Artist of a (played) media file.                                                                                                                                                                                        |
+| outdoor-temperature   | system.outdoor-temperature   | Number:Temperature       | Temperature      | Measurement, Temperature  | Current outdoor temperature.                                                                                                                                                                                            |
+| indoor-temperature    | system.indoor-temperature    | Number:Temperature       | Temperature      | Measurement, Temperature  | Current indoor temperature.                                                                                                                                                                                             |
+| wind-direction        | system.wind-direction        | Number:Angle             | Wind             | Measurement, Wind         | Wind direction in degrees (0-360°).                                                                                                                                                                                     |
+| wind-speed            | system.wind-speed            | Number:Speed             | Wind             | Measurement, Wind         | Wind speed                                                                                                                                                                                                              |
+| atmospheric-humidity  | system.atmospheric-humidity  | Number:Dimensionless     | Humidity         | Measurement, Humidity     | Atmospheric humidity in percent.                                                                                                                                                                                        |
+| barometric-pressure   | system.barometric-pressure   | Number:Pressure          | Pressure         | Measurement, Pressure     | Barometric pressure                                                                                                                                                                                                     |
+| electric-current      | system.electric-current      | Number:ElectricCurrent   | Energy           | Measurement, Current      | Electric current                                                                                                                                                                                                        |
+| electric-power        | system.electric-power        | Number:Power             | Energy           | Measurement, Power        | Electric power                                                                                                                                                                                                          |
+| electric-voltage      | system.electric-voltage      | Number:ElectricPotential | Energy           | Measurement, Voltage      | Electric voltage                                                                                                                                                                                                        |
+| electrical-energy     | system.electrical-energy     | Number:Energy            | Energy           | Measurement, Energy       | Electrical energy                                                                                                                                                                                                       |
 
 For further information about categories see the [categories page](../../concepts/categories.html).
 
@@ -600,14 +599,14 @@ The following policies are supported:
 
 ## Bridges and Thing Descriptions
 
-Every binding has to provide meta information about which bridges and/or *Thing*s it provides and how their relations to each other are structured.
+Every binding has to provide meta information about which bridges and/or _Thing_s it provides and how their relations to each other are structured.
 In that way a binding could describe that it requires specific bridges to be operational or define which channels (e.g. temperature, color, etc.) it provides.
 
-Every bridge or *Thing* has to provide meta information such as label or description.
-The meta information of all bridges and *Thing*s is accessible through the `org.openhab.core.thing.binding.ThingTypeProvider` service.
+Every bridge or _Thing_ has to provide meta information such as label or description.
+The meta information of all bridges and _Thing_s is accessible through the `org.openhab.core.thing.binding.ThingTypeProvider` service.
 
-Bridge and *Thing* descriptions must be placed as XML file(s) (with the ending `.xml`) in the bundle's folder `/OH-INF/thing/`.
-The full Java API for bridge and *Thing* descriptions can be found in the Java package `org.openhab.core.thing.type`.
+Bridge and _Thing_ descriptions must be placed as XML file(s) (with the ending `.xml`) in the bundle's folder `/OH-INF/thing/`.
+The full Java API for bridge and _Thing_ descriptions can be found in the Java package `org.openhab.core.thing.type`.
 
 ### XML Structure for Thing Descriptions
 
@@ -824,7 +823,7 @@ The full Java API for bridge and *Thing* descriptions can be found in the Java p
 | options                       | A list defining the possible commands | optional |
 | option                        | The description for the option | optional |
 | option.value                  | The value for the option. This is the actual command send to the channel. | mandatory |
-| event                         | The restrictions of an trigger event which gives information how to interpret it | optional |
+| event                         | The restrictions of a trigger event which gives information how to interpret it | optional |
 | autoUpdatePolicy              | The auto update policy to use | optional |
 | config-description            | The configuration description for the channel within the ConfigDescriptionRegistry | optional |
 | config-description-ref        | The reference to a configuration description for the channel within the ConfigDescriptionRegistry | optional |
@@ -847,6 +846,6 @@ The full XML schema for Thing type descriptions is specified in the [https://ope
 **Hints:**
 
 - Any identifiers of the types are automatically mapped to unique identifiers: `bindingID:id`.
-- The attribute `uri` in the section `config-description` is optional, it *should not* be specified in bridge/*Thing*/channel type definition files because it's an embedded configuration.
-  If the `uri` is *not* specified, the configuration description is registered as `thing-type:bindingID:id` or `channel-type:bindingID:id` otherwise the given `uri` is used.s
-- If a configuration description is already specified somewhere else and the bridge/*Thing*/channel type wants to (re-)use it, a `config-description-ref` should be used instead.
+- The attribute `uri` in the section `config-description` is optional, it _should not_ be specified in bridge/_Thing_/channel type definition files because it's an embedded configuration.
+  If the `uri` is _not_ specified, the configuration description is registered as `thing-type:bindingID:id` or `channel-type:bindingID:id` otherwise the given `uri` is used.s
+- If a configuration description is already specified somewhere else and the bridge/_Thing_/channel type wants to (re-)use it, a `config-description-ref` should be used instead.

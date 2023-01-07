@@ -11,7 +11,7 @@ If your are looking for general rules explanations have a look at our [Rules](ht
 # Next-Generation Rule Engine
 
 Since openHAB 2.4 another Rule Engine has been added.
-It allows Rules to be edited in a graphical fashion and to interact with [JSR223 Scripts (Javascript, Jypthon, etc)](https://www.openhab.org/docs/configuration/jsr223.html).
+It allows Rules to be edited in a graphical fashion and to interact with [JSR223 Scripts (JavaScript, Jython, etc)](https://www.openhab.org/docs/configuration/jsr223.html).
 
 ## Concept
 
@@ -628,7 +628,7 @@ The composite module type wraps one or more instances of a system module type an
 }
 ```
 
-This example demonstrates a new module type *ItemStateChangeTrigger* which wraps the system module type *GenericEventTrigger*.
-It defines the new configuration property `itemName` which is used as the `eventSource` property of the *GenericEventTrigger*.
+This example demonstrates a new module type _ItemStateChangeTrigger_ which wraps the system module type _GenericEventTrigger_.
+It defines the new configuration property `itemName` which is used as the `eventSource` property of the _GenericEventTrigger_.
 The other config parameters `eventTopic` and `eventTypes` are staticly defined.
 The composite module type can also have inputs and outputs and can use a reference to map them to inputs and outputs of the nested system module type(s).

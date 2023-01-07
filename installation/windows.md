@@ -9,10 +9,7 @@ The following instructions will guide you through the process of setting up open
 
 This page is structured as follows:
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## Preparation of the environment
 
@@ -66,7 +63,7 @@ By installing the openHAB process as a service in Windows, you can:
 
 #### Windows Service Installation Steps
 
-1. Complete the [prerequisites](#prerequisites) and regular [installation](#installation) steps.
+1. Complete the [prerequisites](#before-you-start) and regular [installation](#installation) steps.
 1. Issue the following two commands in your openHAB console:
 
     ```shell
@@ -212,6 +209,9 @@ Update-openHAB -OHVersion x.x.x
 ```
 
 Now that openHAB has updated, you only need to run the above commands again for future versions.
+
+NB: Due to an issue with long file paths sometimes the update script may fail after the 'Copying files...' stage.
+This can be resolved by deleting the c:\openHAB\userdata\tmp folder.  
 
 ### Uninstallation
 

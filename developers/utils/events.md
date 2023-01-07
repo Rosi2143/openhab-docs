@@ -5,8 +5,6 @@ title: Event Bus
 
 # Event Bus
 
-{:.no_toc}
-
 The openHAB framework provides an event bus for inter-component communication.
 The communication is based on events which can be sent and received through the event bus in an asynchronous way.
 Examples of openHAB event types are _ItemCommandEvent_, _ItemStateEvent_, _ItemAddedEvent_, _ThingStatusInfoEvent_, etc.
@@ -14,10 +12,7 @@ Examples of openHAB event types are _ItemCommandEvent_, _ItemStateEvent_, _ItemA
 This section introduces the event API and illustrates how to receive such events.
 Furthermore, the sending of events and the implementation of new event types will be described.
 
-{::options toc_levels="2,3"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## API Introduction
 
@@ -156,7 +151,7 @@ A string representation of an event type can be found by a public member `TYPE` 
 To subscribe to all available event types, use the public member `ALL_EVENT_TYPES` of the event subscriber interface.
 
 The event subscriber provides a `TopicEventFilter` which is a default openHAB `EventFilter` implementation that ensures filtering of events based on a topic.
-The argument of the filter is a [Java regular expression](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html).
+The argument of the filter is a [Java regular expression](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html).
 The filter method `EventFilter.apply()` will be called for each event on the event bus to which the event subscriber is subscribed (in the example above `ItemStateEvent` and `ItemCommandEvent`).
 If the filter applies (in the given example for all item events with the item name "ItemX"), the event will be received by the `EventSubscriber.receive()` method.
 Received events can be cast to the event implementation class for further processing.
@@ -179,7 +174,7 @@ The listing below summarizes some best practices in order to implement event sub
     To provide an event filter the method `getEventFilter()` can be overridden.
 - openHAB provides an `AbstractItemEventSubscriber` class in order to receive `ItemStateEvents` and `ItemCommandEvents` (more information can be obtained in the next chapter).
 - To filter events based on a topic the  `org.openhab.core.events.TopicEventFilter` implementation from the openHAB core bundle can be used.
-    The filtering is based on [Java regular expression](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html).
+    The filtering is based on [Java regular expression](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html).
 - The subscribed event types and the filter should be stored as class members (see example above) due to performance reasons.
 - If the subscribed event types are sufficient in order to receive all interested events, do not return any filter (in that case the method getFilter() returns null) due to performance reasons.
 - Avoid the creation of too many event subscribers.

@@ -18,10 +18,7 @@ Those that are not embedded require the installation and configuration of a sepa
 
 Note that Persistence only saves Item states.
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## Persistence Concepts
 
@@ -33,7 +30,7 @@ But the question is, when does it save those Item states?
 - Only when the Item receives a command?
 - Every minute whether it has received an event or not?
 
-These are all different *persistence strategies*.
+These are all different _persistence strategies_.
 openHAB supports all of them, and they can be combined (e.g. every Item changed and every five minutes.)
 
 One special persistence strategy is `restoreOnStartup` which will update the Item with the most recently saved Item state when openHAB starts up or otherwise refreshes the Item.

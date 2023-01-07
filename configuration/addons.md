@@ -37,7 +37,7 @@ openhab-binding-network                   | 3.0.0.M5         |          | Uninst
 ...
 ```
 
-According to the [naming convention for bundles](/docs/administration/bundles.html#naming-convention-for-bundles) the *id* for the shown example is *network*.
+According to the [naming convention for bundles](/docs/administration/bundles.html#naming-convention-for-bundles) the _id_ for the shown example is _network_.
 
 Another way to find the correct `id` is to look at the URL of the add-on documentation page.
 For example the url for the [Network Binding documentation](/addons/bindings/network/) is
@@ -48,7 +48,7 @@ https://www.openhab.org/addons/bindings/network/
 
 In this case, the `id` would be "network".
 
-With this information we can now edit the *addons.cfg* file in the `$OPENHAB_CONF/services` folder on the machine you are running openHAB on.
+With this information we can now edit the _addons.cfg_ file in the `$OPENHAB_CONF/services` folder on the machine you are running openHAB on.
 The path depends on your installation.
 You can find out the correct locations on the corresponding documentation pages, e.g. [Linux](/docs/installation/linux.html#file-locations) or [Windows](/docs/installation/windows.html#file-locations).
 
@@ -62,7 +62,7 @@ transformation = jsonpath
 persistence = influxdb
 ```
 
-To install the network Binding like we want in this example, we just need to add the id *network* to the Binding section.
+To install the network Binding like we want in this example, we just need to add the id _network_ to the Binding section.
 
 ```text
 binding = astro,network
@@ -83,3 +83,8 @@ One way of retrieving those files is mentioned above in the openHAB console part
 Place the `.jar` file in the `addons` folder on the machine you are running openHAB on.
 As described already for the addons.cfg option, the path depends on your installation.
 Place the .jar file in the folder Additional add-on files as described in File Locations ([Linux](/docs/installation/linux.html#file-locations), [Windows](/docs/installation/windows.html#file-locations) or [macOS](/docs/installation/macos.html#file-locations)).
+
+## Through the openHAB console
+
+Add-ons (also known as bundles) can be also installed and updated via the openHAB console.
+A detailed description can be found at [Installing or Updating Bundles](/docs/administration/bundles.html).

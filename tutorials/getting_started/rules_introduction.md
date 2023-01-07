@@ -11,10 +11,7 @@ To create home automation we need to define behaviors.
 In openHAB behaviors are defined using rules.
 Almost anything you can think of can be done as long as you have a relevant event to kick it off and access to the data needed to decide what to do.
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## Event Driven
 
@@ -22,7 +19,7 @@ openHAB is an event driven system.
 What that means is an event happens and parts of openHAB that watch for that event can react.
 Persistence will see an Item change event and save that new state to the database.
 The UIs will watch for that same Item change event and update the UI widgets as necessary.
-And some rules will *trigger* when that Item change event occurs to create some behavior.
+And some rules will _trigger_ when that Item change event occurs to create some behavior.
 
 For example, the behavior we want is to turn on a light (represented by the Item `Light`) when motion is detected (represented by the Item `Motion`).
 To create this behavior we could create a rule that triggers on the event of the `Motion` Item receiving the command `ON` that sends the command `ON` to the `Light` Item.
@@ -110,7 +107,7 @@ This tutorial will not discuss file based rules.
 See the docs for the chosen language for details on how to write rules in files for that language.
 
 openHAB comes with three languages by default (Rules DSL, ECMAScript 5.1, and Blockly) and has a number of add-ons to add more.
-For this tutorial we will be using Blockly and the [JavaScript Scripting](/addons/automation/jsscripting/) add-on.
+For this tutorial we will be using [Blockly](/docs/configuration/blockly/) and the [JavaScript Scripting](/addons/automation/jsscripting/) add-on.
 But most of the concepts presented can be applied to the other languages too.
 
 ## What's the Difference Between a Rule, Script, and Schedule?

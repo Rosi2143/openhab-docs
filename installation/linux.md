@@ -11,10 +11,7 @@ All instructions can be executed in a terminal or remotely via SSH connection.
 
 This page is structured as follows:
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 If you are unfamiliar with Linux, SSH and the Linux console or if you want to improve your skills, read up on these important topics.
 A lot of helpful articles can be found on the internet, for example:
@@ -36,7 +33,7 @@ If you're unsure which manual file you should download, using `dpkg --print-arch
 When installing Zulu or Zulu Embedded from a .zip or .tar archive, make sure to [set Zulu as the main Java "alternative"](https://docs.azul.com/zulu/zuludocs/#ZuluUserGuide/SwitchingBetweenJavaAlternatives/SwitchBetweenJavaAlts.htm).
 
 ::: tip Note
-Make sure to download Zulu or Java **11**.
+Make sure to download Zulu or Java **17**.
 :::
 
 ## Installation
@@ -69,13 +66,16 @@ Alternatively resort to the [manual installation approach](#manual-installation)
 
 {% include collapsible/body.html %}
 
-First, add the openHAB repository key to your package manager:
+First, add the openHAB repository key to your package manager (note `/usr/share/keyrings` may already exist):
 
 ```shell
-wget -qO - 'https://openhab.jfrog.io/artifactory/api/gpg/key/public' | sudo apt-key add -
+curl -fsSL "https://openhab.jfrog.io/artifactory/api/gpg/key/public" | gpg --dearmor > openhab.gpg
+sudo mkdir /usr/share/keyrings
+sudo mv openhab.gpg /usr/share/keyrings
+sudo chmod u=rw,g=r,o=r /usr/share/keyrings/openhab.gpg
 ```
 
-Then, you can choose between, *Official (Stable)*, *Beta* or *Snapshot* builds:
+Then, you can choose between, _Official (Stable)_, _Beta_ or _Snapshot_ builds:
 
 - **Stable Release**
 
@@ -84,7 +84,7 @@ Then, you can choose between, *Official (Stable)*, *Beta* or *Snapshot* builds:
     Add the **openHAB Stable Repository** to your systems apt sources list:
 
     ```shell
-    echo 'deb https://openhab.jfrog.io/artifactory/openhab-linuxpkg stable main' | sudo tee /etc/apt/sources.list.d/openhab.list
+    echo 'deb [signed-by=/usr/share/keyrings/openhab.gpg] https://openhab.jfrog.io/artifactory/openhab-linuxpkg stable main' | sudo tee /etc/apt/sources.list.d/openhab.list
     ```
 
 - **Testing Release**
@@ -94,7 +94,7 @@ Then, you can choose between, *Official (Stable)*, *Beta* or *Snapshot* builds:
     Add the **openHAB Beta Repository** to your systems apt sources list:
 
     ```shell
-    echo 'deb https://openhab.jfrog.io/artifactory/openhab-linuxpkg testing main' | sudo tee /etc/apt/sources.list.d/openhab.list
+    echo 'deb [signed-by=/usr/share/keyrings/openhab.gpg] https://openhab.jfrog.io/artifactory/openhab-linuxpkg testing main' | sudo tee /etc/apt/sources.list.d/openhab.list
     ```
 
 - **Snapshot Release**
@@ -106,7 +106,7 @@ Then, you can choose between, *Official (Stable)*, *Beta* or *Snapshot* builds:
     To use it, add the **openHAB Unstable Repository** to your systems apt sources list:
 
     ```shell
-    echo 'deb https://openhab.jfrog.io/artifactory/openhab-linuxpkg unstable main' | sudo tee /etc/apt/sources.list.d/openhab.list
+    echo 'deb [signed-by=/usr/share/keyrings/openhab.gpg] https://openhab.jfrog.io/artifactory/openhab-linuxpkg unstable main' | sudo tee /etc/apt/sources.list.d/openhab.list
     ```
 
 Next, resynchronize the package index:
@@ -446,6 +446,19 @@ This user will later serve to execute the openHAB runtime with restricted permis
 sudo adduser --system --no-create-home --group --disabled-login openhab
 ```
 
+:::tip note
+The needed command syntax may vary based on the distribution you are using.
+
+Below there is an example for fedora besed systems:
+
+```shell
+sudo adduser --system --no-create-home --user-group --disabled-login openhab
+```
+
+So make sure to check the allowed command parameters in case of any errors.
+
+:::
+
 We are going to download a platform independent archive file and extract it to the path `/opt/openhab`.
 Choose between the latest Beta release or a Snapshot with all incoming contributions, created daily.
 As openHAB is still in an evolving state, the snapshot may be the **preferred choice**.
@@ -624,7 +637,7 @@ sudo systemctl daemon-reload
 
 ## Backup and Restore
 
-It is recommended to make a backup of your configuration before *any* major change.
+It is recommended to make a backup of your configuration before _any_ major change.
 To make a backup of openHAB 2 or higher, you need to retain your configuration and userdata files.
 openHAB comes with scripts for storing your configuration in a zip file which is saved in `/var/lib/openhab/backups` for automatic installs and `openhab/backups` for manual installs.
 You can change the default path by setting the $OPENHAB_BACKUPS environment variable.
@@ -789,7 +802,7 @@ Let's activate the "openhab" user as a samba user and set his password (e.g. "ha
 sudo smbpasswd -a openhab
 ```
 
-Be aware, that creating and later using a specific user will ensure, that [permissions](#permissions) are honored.
+Be aware, that creating and later using a specific user will ensure, that **permissions** are honored.
 Make sure, the "openhab" user has ownership and/or write access to the openHAB configuration files.
 This can be accomplished by executing:
 

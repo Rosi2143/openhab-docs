@@ -9,10 +9,7 @@ As with the Overview Page and individual cards, the way individual Point Items a
 In general, the steps to do this include navigating to the Item in the Model tree or the Items Settings, clicking on "Add Metadata", and selecting "Default List Widget" to customize how the Item appears in the automatically generated cards on the Overview Page.
 One can also set the "Default Stand Alone Widget" and "Default Cell Widget" to change how an Item appears in other parts of MainUI.
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## Expressions
 
@@ -92,7 +89,7 @@ If you have more than one Item that should look and behave the same, create a cu
 Once a custom widget is created, it will appear in the list of widget types.
 Properties can be used to customize the widget to work for each Item.
 See the docs referenced above for details, and the next page of this tutorial for some general advice and approaches.
-Look in the [Add-Ons - UI Category on the forum](https://community.openhab.org/c/add-ons/uis/30) for lots of examples.
+Look in the [Add-ons - UI Category on the forum](https://community.openhab.org/c/add-ons/uis/30) for lots of examples.
 
 ## Import Widgets from the openHAB marketplace
 
@@ -103,7 +100,7 @@ There is also a [marketplace](https://community.openhab.org/c/marketplace/69) av
 By default the state of the Item will be displayed on the right hand side of the widget.
 Sometimes the binding will provide hints on how to display the state, but most of the time this default will be just the string from `MyItem.state.toString()`.
 
-Note that the `label` field of an Item's definition in a .items file or the label set on the Item is *not* used by MainUI.
+Note that the `label` field of an Item's definition in a .items file or the label set on the Item is _not_ used by MainUI.
 
 To customize the state of the Item, the "State Description" metadata must be configured.
 This metadata lets you define the format and any transformations to apply to the Item's state before it is displayed.

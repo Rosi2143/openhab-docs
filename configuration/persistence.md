@@ -27,12 +27,6 @@ Select your default service from the drop-down list.
 Note that you must first install a persistence add-on before you make this selection.
 Be sure to save your choice once you have selected your default service.
 
-## Default Persistence Strategy
-
-Once a persistence service is installed it will start to persist Items according to its default strategy. Defaults are documented for each persistence service in their respective [documentation pages](/addons/#persistence).
-
-To overwrite the default strategy with something more appropriate for your setup, read on.
-
 ## Persistence Configuration
 
 The information below allows you to determine which Item states are persisted, when they are persisted, and where they are stored.
@@ -47,7 +41,7 @@ Persistence may also be triggered by a time-related event (see Cron Persistence 
 
 ### Strategies
 
-This section allows you to name and define one or more `Strategies` and to select a default strategy.
+This section allows you to name and define one or more `Strategies`.
 The syntax is as follows:
 
 ```java
@@ -55,14 +49,8 @@ Strategies {
   <strategyName1> : "cronexpression1"
   <strategyName2> : "cronexpression2"
   ...
-  default = everyChange
-  ...
 }
 ```
-
-The `default` parameter assigns a strategy to be used if one is not specified in the `Items` section below.
-The `default` parameter may be omitted from the `Strategies` section, but only if a strategy is provided in each line of the `Items` section.
-If the `strategy` portion of the `itemlist` is omitted in the `Items` section, the `default` strategy specified in the `Strategies` section will be applied.
 
 #### Predefined Strategies
 
@@ -95,26 +83,9 @@ where `<itemlist>` is a comma-separated list consisting of one or more of the fo
 
 - `*` - this line should apply to all items in the system
 - `<itemName>` a single Item identified by its name. This Item can be a group Item.  But note that only the group value will be persisted.  The value of the individual group members will not be persisted using this option.
-- `<groupName>*` - all members of this group will be persisted, but not the group itself. If no strategies are provided, the default strategies that are declared in the first section are applied.
+- `<groupName>*` - all members of this group will be persisted, but not the group itself.
   Optionally, an alias may be provided if the persistence service requires special names (e.g. a table to be used in a database, a feed id for an IoT service, etc.)
   Note that `*` is NOT a wildcard match character in this context.
-
-The example `Items` section below takes advantage of a `default` entry in the  `Strategies` section.
-Assume the `Strategies` section contains the line:
-
-```java
-  default = everyChange
-```
-
-then the following section,
-
-```java
-Items {
-    GF_Hall_Light
-}
-```
-
-will cause the state of `GF_Hall_Light` to be persisted on every change.
 
 Below you will find a complete example persistence configuration file:
 
@@ -123,9 +94,6 @@ Below you will find a complete example persistence configuration file:
 Strategies {
         everyHour : "0 0 * * * ?"
         everyDay  : "0 0 0 * * ?"
-
-        // if no strategy is specified for an Item entry below, the default list will be used
-       default = everyChange
 }
 
 /*
@@ -152,7 +120,8 @@ The following example persists two items on every change and restores them at st
 
 ```java
 Strategies {
-  default = everyUpdate
+        everyHour : "0 0 * * * ?"
+        everyDay  : "0 0 0 * * ?"
 }
 
 Items {
@@ -179,26 +148,35 @@ You can easily imagine that you can implement very powerful rules using this fea
 
 Here is the full list of available persistence extensions:
 
-| Persistence Extension                  | Description                                                                                                                                                                |
-|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<item>.persist`                       | Persists the current State of the Item                                                                                                                                     |
-| `<item>.lastUpdate`                    | Queries for the last update timestamp of a given Item                                                                                                                      |
-| `<item>.historicState(ZonedDateTime)`  | Retrieves the State of an Item at a certain point in time (returns HistoricItem)                                                                                           |
-| `<item>.changedSince(ZonedDateTime)`   | Checks if the State of the Item has (ever) changed since a certain point in time                                                                                           |
-| `<item>.updatedSince(ZonedDateTime)`   | Checks if the state of the Item has been updated since a certain point in time                                                                                             |
-| `<item>.maximumSince(ZonedDateTime)`   | Gets the maximum value of the State of a persisted Item since a certain point in time (returns HistoricItem)                                                               |
-| `<item>.minimumSince(ZonedDateTime)`   | Gets the minimum value of the State of a persisted Item since a certain point in time (returns HistoricItem)                                                               |
-| `<item>.averageSince(ZonedDateTime)`   | Gets the average value of the State of a persisted Item since a certain point in time. This method uses a time-weighted average calculation (see example below)            |
-| `<item>.deltaSince(ZonedDateTime)`     | Gets the difference in value of the State of a given Item since a certain point in time                                                                                    |
-| `<item>.evolutionRate(ZonedDateTime)`  | Gets the evolution rate of the state of a given {@link Item} since a certain point in time (returns DecimalType)                                                           |
-| `<item>.deviationSince(ZonedDateTime)` | Gets the standard deviation of the state of the given Item since a certain point in time (returns DecimalType)                                                             |
-| `<item>.varianceSince(ZonedDateTime)`  | Gets the variance of the state of the given Item since a certain point in time (returns DecimalType)                                                                       |
-| `<item>.previousState()`               | Gets the previous State of a persisted Item (returns HistoricItem)                                                                                                         |
-| `<item>.previousState(true)`           | Gets the previous State of a persisted Item, skips Items with equal State values and searches the first Item with State not equal the current State (returns HistoricItem) |
-| `<item>.sumSince(ZonedDateTime)`       | Gets the sum of the previous States of a persisted Item since a certain point in time                                                                                      |
+| Persistence Extension                                   | Description                                                                                                                                                                |
+|---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `<item>.persist`                                        | Persists the current State of the Item                                                                                                                                     |
+| `<item>.lastUpdate`                                     | Returns the last timestamp a given Item was persisted                                                                                                                      |
+| `<item>.historicState(ZonedDateTime)`                   | Retrieves the State of an Item at a certain point in time (returns HistoricItem)                                                                                           |
+| `<item>.changedSince(ZonedDateTime)`                    | Checks if the State of the Item has (ever) changed since a certain point in time                                                                                           |
+| `<item>.changedBetween(ZonedDateTime, ZonedDateTime)`   | Checks if the State of the Item has (ever) changed between certain points in time                                                                                          |
+| `<item>.updatedSince(ZonedDateTime)`                    | Checks if the state of the Item has been updated since a certain point in time                                                                                             |
+| `<item>.updatedBetween(ZonedDateTime, ZonedDateTime)`   | Checks if the state of the Item has been updated between certain points in time                                                                                            |
+| `<item>.maximumSince(ZonedDateTime)`                    | Gets the maximum value of the State of a persisted Item since a certain point in time (returns HistoricItem)                                                               |
+| `<item>.maximumBetween(ZonedDateTime ZonedDateTime)`    | Gets the maximum value of the State of a persisted Item between certain points in time (returns HistoricItem)                                                              |
+| `<item>.minimumSince(ZonedDateTime)`                    | Gets the minimum value of the State of a persisted Item since a certain point in time (returns HistoricItem)                                                               |
+| `<item>.minimumBetween(ZonedDateTime, ZonedDateTime)`   | Gets the minimum value of the State of a persisted Item between certain points in time (returns HistoricItem)                                                              |
+| `<item>.averageSince(ZonedDateTime)`                    | Gets the average value of the State of a persisted Item since a certain point in time. This method uses a time-weighted average calculation (see example below)            |
+| `<item>.averageBetween(ZonedDateTime, ZonedDateTime)`   | Gets the average value of the State of a persisted Item betwen certain points in time. This method uses a time-weighted average calculation (see example below)            |
+| `<item>.deltaSince(ZonedDateTime)`                      | Gets the difference in value of the State of a given Item since a certain point in time                                                                                    |
+| `<item>.deltaBetween(ZonedDateTime, ZonedDateTime)`     | Gets the difference in value of the State of a given Item between certain points in time                                                                                   |
+| `<item>.evolutionRate(ZonedDateTime)`                   | Gets the evolution rate of the state of a given Item since a certain point in time (returns DecimalType)                                                                   |
+| `<item>.evolutionRate(ZonedDateTime, ZonedDateTime)`    | Gets the evolution rate of the state of a given Item between certain points in time (returns DecimalType)                                                                  |
+| `<item>.deviationSince(ZonedDateTime)`                  | Gets the standard deviation of the state of the given Item since a certain point in time (returns DecimalType)                                                             |
+| `<item>.deviationBetween(ZonedDateTime, ZonedDateTime)` | Gets the standard deviation of the state of the given Item between certain points in time (returns DecimalType)                                                            |
+| `<item>.varianceSince(ZonedDateTime)`                   | Gets the variance of the state of the given Item since a certain point in time (returns DecimalType)                                                                       |
+| `<item>.varianceBetween(ZonedDateTime, ZonedDateTime)`  | Gets the variance of the state of the given Item between certain point sin time (returns DecimalType)                                                                      |
+| `<item>.previousState()`                                | Gets the previous State of a persisted Item (returns HistoricItem)                                                                                                         |
+| `<item>.previousState(true)`                            | Gets the previous State of a persisted Item, skips Items with equal State values and searches the first Item with State not equal the current State (returns HistoricItem) |
+| `<item>.sumSince(ZonedDateTime)`                        | Gets the sum of the previous States of a persisted Item since a certain point in time                                                                                      |
+| `<item>.sumBetween(ZonedDateTime, ZonedDateTime)`       | Gets the sum of the previous States of a persisted Item between certain points in time                                                                                     |
 
-These extensions use the default persistence service.
-(Refer to 'Default Persistence Service' above to configure this.)
+These extensions use the [default persistence service](#default-persistence-service).
 You may specify a different persistence service by appending a String as an optional additional parameter at the end of the extension.
 
 ### Examples

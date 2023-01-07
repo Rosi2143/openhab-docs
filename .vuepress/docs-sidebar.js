@@ -22,6 +22,7 @@ module.exports = [
       'tutorial/item_widgets',
       'tutorial/custom_widgets',
       'tutorial/rules_introduction',
+      'tutorial/rules_overview',
       'tutorial/rules_basic',
       'tutorial/rules_blockly',
       'tutorial/rules_advanced',
@@ -40,7 +41,8 @@ module.exports = [
       'installation/armbian',
       'installation/docker',
       'installation/synology',
-      ['installation/security', 'Security']
+      ['installation/security', 'Security'],
+      ['installation/reverse-proxy', 'Reverse Proxy']
     ]
   },
   {
@@ -53,6 +55,7 @@ module.exports = [
       'concepts/discovery',
       'concepts/audio',
       'concepts/units-of-measurement',
+      'concepts/rules',
     ]
   },
   {
@@ -74,10 +77,24 @@ module.exports = [
       'configuration/services',
       'configuration/multimedia',
       ['configuration/restdocs', 'REST API'],
+      ['configuration/websocket', 'WebSocket API'],
       ['configuration/apitokens', 'API Token Generation'],
       ['configuration/migration/', 'Migration from openHAB 2']
     ]
   },
+    {
+      title: 'Settings',
+      collapsable: false,
+      children: [
+        ['settings/', 'Settings Overview'],
+        'settings/aboutpage',
+        'settings/configuration',
+        ['settings/automations', 'Automation'],
+        'settings/addons',
+        'settings/services_system',
+        'settings/services_other',
+      ]
+    },
   {
     title: 'User Interface Guide',
     collapsable: false,
@@ -90,6 +107,7 @@ module.exports = [
       'ui/tabbed-pages',
       'ui/chart-pages',
       ['ui/building-pages', 'Building Pages'],
+      ['ui/personal-widgets', 'Creating Personal Widgets'],
       ['ui/components/', 'Component Reference'],
       'ui/habpanel/habpanel',
       ['apps/android', 'Android App'],

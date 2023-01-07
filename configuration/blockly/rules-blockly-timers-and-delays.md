@@ -12,10 +12,9 @@ Timers and Delays are a little more complex but add important functionality to r
 Whilst the "Wait-For"-block is straightforward, the timer blocks should be well understood before being used - they may behave differently than expected.
 This chapter explains what these blocks do, sometimes displaying generated code to explain what is happening behind the scenes.
 
-- TOC
-{:toc}
+More about that topic can be viewed at ![youtube](../images/blockly/youtube-logo-small.png) [Timers](https://youtu.be/hSRfooBKn9A?t=630).
 
-{: #blockly-timers-and-delays-overview}
+[[toc]]
 
 ## Overview of the Timers and Delays category
 
@@ -25,32 +24,34 @@ This chapter explains what these blocks do, sometimes displaying generated code 
 
 Timers are created and referred to by name, enabling manipulation within a rule.
 
-> **Important**: a named timer is *only* available within the same rule. The same timer *cannot* be accessed via a different rule. A different rule with a timer of the same name results into two separate timers.
+> **Important**: a named timer is _only_ available within the same rule. The same timer _cannot_ be accessed via a different rule. A different rule with a timer of the same name results into two separate timers.
 
 ### Wait for
 
 ![waitfor](../images/blockly/blockly-waitfor.png)
 
-*Function:* Suspends execution of the rule for a given period of time
+_Function:_ Suspends execution of the rule for a given period of time
 
 - unit of time (ms) is milliseconds (1000 ms = 1 second)
 
-*Example*
+_Example_
 
 The following simple example uses a loop to implement a blinking light with a 1 second delay, looping three times:
 
 ![waifor-example](../images/blockly/blockly-waitfor-example.png)
 
-### After *period of time* Do With Timer
+More about that topic can be viewed at ![youtube](../images/blockly/youtube-logo-small.png) [Waiting in Rules](https://youtu.be/EdllUlJ7p6k?t=1600)
+
+### After _period of time_ Do With Timer
 
 ![blockly-afterperiodtimer](../images/blockly/blockly-afterperiod-timer.png)
 
-*Function:* Schedule a task to be performed once after a specific amount of time has elapsed.
+_Function:_ Schedule a task to be performed once after a specific amount of time has elapsed.
 
 - A number and unit (seconds, minutes up to months) can be chosen after which the commands within the block will be executed
 - Provide the name of the timer, allowing further access to that timer within the same rule. The name also ensures the timer is unique within the rule.
 
-*Example*
+_Example_
 
 10 seconds after the rule has been called, the timer triggers all lights to go off:
 
@@ -58,7 +59,7 @@ The following simple example uses a loop to implement a blinking light with a 1 
 
 ### Reschedule Timer
 
-*Function:*  Sometimes one may want to use the same timer and reschedule the same block of code again. This can be achieved with the reschedule-block
+_Function:_  Sometimes one may want to use the same timer and reschedule the same block of code again. This can be achieved with the reschedule-block
 
 ![reschedule-timer](../images/blockly/blockly-reschedule-timer.png)
 
@@ -70,24 +71,24 @@ An example is as follows:
 
 ![reschedule-timer-example1](../images/blockly/blockly-reschedule-timer-example1.png)
 
-Setting up an endless timer in teh above way is not recommended. The example shown below will stop rescheduling after 3 doorbell rings.
+Setting up an endless timer in the above way is not recommended. The example shown below will stop rescheduling after 3 doorbell rings.
 
 ![reschedule-timer-example2](../images/blockly/blockly-reschedule-timer-example2.png)
 
-### After *period of time* Do With Timer with options on retriggering rule
+### After _period of time_ Do With Timer with options on retriggering rule
 
 ![afterperiod-timer-options](../images/blockly/blockly-afterperiod-timer-options.png)
 
-*Function:* Schedule a task to be performed at a specified period in the future with the ability to reschedule, cancel or ignore the timer **when the rule is retriggered**.
+_Function:_ Schedule a task to be performed at a specified period in the future with the ability to reschedule, cancel or ignore the timer **when the rule is retriggered**.
 
 Before using that block, it is important to understand what the idea behind the option of retriggering:
 Though it may not seem to be obvious, the same rule can be retriggered at any time. To allow more control about what is happening in this case the rule is executed again, the following options are available:
 
 **Options on Retrigger**
 
-- *reschedule*: If the same rule that contains this Blockly script is re-triggered, and this specific timer is currently active, this specific timer will be rescheduled (i.e. restart the countdown timer).
-- *cancel*: If the same rule that contains this Blockly script is re-triggered, and this specific timer is currently active, this specific timer will be cancelled. The code within the timer will not be executed.
-- *do nothing*: If the same rule that contains this Blockly script is re-triggered, nothing happens - this will make the block identical to the simple timer-block in function, but the generated code is slightly modified - see below.
+- _reschedule_: If the same rule that contains this Blockly script is re-triggered, and this specific timer is currently active, this specific timer will be rescheduled (i.e. restart the countdown timer).
+- _cancel_: If the same rule that contains this Blockly script is re-triggered, and this specific timer is currently active, this specific timer will be cancelled. The code within the timer will not be executed.
+- _do nothing_: If the same rule that contains this Blockly script is re-triggered, nothing happens - this will make the block identical to the simple timer-block in function, but the generated code is slightly modified - see below.
 
 ![afterperiod-timer-options-block](../images/blockly/blockly-afterperiod-timer-options-block.png)
 
@@ -125,7 +126,7 @@ The retrigger timer-block inserts an additional `else{}` branch into the generat
 - the timer already exists and
 - the timer has not yet finished (it's still ticking)
 
-In the case of *do nothing* the `else{}` branch is empty (which turns to be almost equals to the simle-timer).
+In the case of _do nothing_ the `else{}` branch is empty (which turns to be almost equals to the simle-timer).
 
 ```javascript
 if (typeof this.timers['nothingTimerBlock'] === 'undefined' || this.timers['nothingTimerBlock'].hasTerminated()) {
@@ -136,7 +137,7 @@ if (typeof this.timers['nothingTimerBlock'] === 'undefined' || this.timers['noth
 }
 ```
 
-In the case of *cancel* the `else{}` branch contains code to cancel the timer.
+In the case of _cancel_ the `else{}` branch contains code to cancel the timer.
 
 ```javascript
 if (typeof this.timers['cancelTimerBlock'] === 'undefined' || this.timers['cancelTimerBlock'].hasTerminated()) {
@@ -148,7 +149,7 @@ if (typeof this.timers['cancelTimerBlock'] === 'undefined' || this.timers['cance
 }
 ```
 
-In the case of *reschedule* the `else{}` statement contains code to reschedule the timer - restart the countdown. In the example generated code below:
+In the case of _reschedule_ the `else{}` statement contains code to reschedule the timer - restart the countdown. In the example generated code below:
 
 - Imagine the rule is triggered at 0 elapsed seconds.
 - The timer is started with a 10 second countdown.
@@ -168,23 +169,24 @@ if (typeof this.timers['rescheduleTimerBlock'] === 'undefined' || this.timers['r
 ### Cancel Timer
 
 ![cancel-timer.png](../images/blockly/blockly-cancel-timer.png)
-*Function*: Cancels the existing named timer, preventing code within the timer block from executing.
+_Function_: Cancels the existing named timer, preventing code within the timer block from executing.
 
 ### Timer is Active
 
 ![timer-is-active](../images/blockly/blockly-timer-is-active.png)
 
-*Function:* returns `true` if the timer itself is currently counting down, and the code within the timer will be eventually executed as scheduled. This block will return `false` if the timer doesn't exist, has been cancelled, or has already finished.
+_Function:_ returns `true` if the timer itself is currently counting down, and the code within the timer will be eventually executed as scheduled. This block will return `false` if the timer doesn't exist, has been cancelled, or has already finished.
 
 ### Timer is Running
 
 ![timer-is-running](../images/blockly/blockly-timer-is-running.png)
-*Function*: returns `true` if the code *within the timer block* is currently running - i.e. the countdown has finished, and the code within the timer block is currently executing. This event will usually only last a few milliseconds, and you’d be (un)lucky to catch it when your rule retriggers.
+
+_Function_: returns `true` if the code _within the timer block_ is currently running - i.e. the countdown has finished, and the code within the timer block is currently executing. This event will usually only last a few milliseconds, and you’d be (un)lucky to catch it when your rule retriggers.
 
 ### Timer has terminated
 
 ![timer-terminated](../images/blockly/blockly-timer-terminated.png)
-*Function*: returns `true` if the timer has finished its countdown, and the code within the timer block has finished running.
+_Function_: returns `true` if the timer has finished its countdown, and the code within the timer block has finished running.
 
 ### Comprehensive Timer Example
 

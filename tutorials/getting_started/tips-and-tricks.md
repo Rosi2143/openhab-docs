@@ -8,10 +8,7 @@ title:  Tips and Tricks
 This section is dedicated to generic tips and tricks to make your use and configuration of openHAB easier.
 They are discussed in no particular order.
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## Backups
 
@@ -115,6 +112,14 @@ Finally, when developing a new capability a number of new objects will need to b
 This fourth tab has quick links to create any sort of Object that can be created in OH saving you from needing to click through the Settings menu multiple times to create different but related objects.
 
 ![Create Shortcuts](images/developer-sidebar-create.png)
+
+## Consider the logs
+
+Sometimes you may face errors, even if you tried your best with developing a working solution.
+In cases where the failure can not be found in a fast way you can have a look at the logging output that openHAB provides.
+
+Accessing the logs depends on different factors (e.g. the way you have installed openHAB).
+You can find an overview of how to access and handle logging in the [corresponding article](/docs/administration/logging.html).
 
 ## Save Examples
 

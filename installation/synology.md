@@ -3,6 +3,15 @@ layout: documentation
 title: Synology DiskStation
 ---
 
+:::tip Note
+
+openHAB 4 and higher need Java 17.
+You will need to provide a working Java installation on your DiskStation.
+The sections below are written for Java 11 but the docs are not updated currently, since we have not secured knowledge about how to install Java 17 on the DiskStation.
+If you can provide some proper sources and explanation, we are happy to include your contribution into this article.
+
+:::
+
 # Synology DiskStation DSM 7.0 and higher
 
 The [DiskStation by Synology](https://www.synology.com/en-us/dsm) is a famous NAS server solution for your home, allowing the installation of additional packages.
@@ -46,7 +55,14 @@ In this case we need the 1032 as the user and the 65539 as the group. Write them
 
 ## Docker
 
-DSM 7 does not longer support Java 11 directly and therefor openHAB has to run in a Docker container.
+:::tip Note
+DSM 7 does not longer support Java 11 directly.
+You either have to run openHAB in a Docker container or have to take care of a properly installed Java 11 runtime on your own.
+
+The following poart shows the Docker based installation.
+You may also get Java 11 via [community package](https://synocommunity.com/package/java-11-openjdk) and go own with the manual for [older DSM Versions](#older-synology-diskstations-till-dsm-6).
+:::
+
 And that also makes the installation easier to maintain.
 It works out of the box a bit different then the normal Docker installation as described in de openHAB documententation.
 Docker is a containerization platform and is used to run lightweight containers.
@@ -154,10 +170,10 @@ The filename and format of the uploaded file will be checked before installation
 If there is not a Java8 package in the Package Center, your machine may not be supported by the [Synology package](https://www.synology.com/en-us/dsm/packages/Java8).
 
 The best option for older unsupported Synology models such as **PowerPC** and **ARMv5** is to include the [PC-Loadletter](https://pcloadletter.co.uk/2011/08/23/java-package-for-synology/) Repo.
-[Download Java SE](https://www.oracle.com/technetwork/java/embedded/embedded-se/downloads/index.html) [(latest ARMv6)](https://www.oracle.com/technetwork/java/embedded/embedded-se/downloads/javase-embedded-downloads-2209751.html) [(Java Cryptography Extension if required)](https://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) and put them in the *public* folder of your NAS.
+[Download Java SE](https://www.oracle.com/technetwork/java/embedded/embedded-se/downloads/index.html) [(latest ARMv6)](https://www.oracle.com/technetwork/java/embedded/embedded-se/downloads/javase-embedded-downloads-2209751.html) [(Java Cryptography Extension if required)](https://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) and put them in the _public_ folder of your NAS.
 Then start the installation of Java8 SE.
 
-*Note that it may be necessary to rename the downloaded file to match the name the Loadletter utility expects which may be an older version than what is currently available.*
+_Note that it may be necessary to rename the downloaded file to match the name the Loadletter utility expects which may be an older version than what is currently available._
 
 The **Java8 PowerPC** versions are available from [Oracle](https://www.oracle.com/technetwork/java/embedded/embedded-se/downloads/javaseembedded8u6-2406243.html).
 

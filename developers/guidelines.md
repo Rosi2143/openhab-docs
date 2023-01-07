@@ -5,8 +5,6 @@ title: Coding Guidelines
 
 # Coding Guidelines
 
-{:.no_toc}
-
 The following guidelines apply to all (Java) code of the openHAB project.
 They must be followed to ensure a consistent code base for easy readability and maintainability.
 Exceptions can certainly be made, but they should be discussed and approved by a project maintainer upfront.
@@ -16,10 +14,7 @@ To speed up the contribution process, we therefore advice to go through this che
 
 If you are just keen on binding development, you may skip this document first and come back later.
 
-{::options toc_levels="2,3"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## A. Directory and File Layout
 
@@ -137,7 +132,7 @@ Data-transfer-objects (DTOs map from JSON/XML to Java classes) do not require Ja
 
 ## D. Language Levels and Libraries
 
-1. openHAB generally targets the long time supported Java 11 release.
+1. openHAB generally targets the long time supported Java 17 release.
 1. The [OSGi Core Release 7](https://osgi.org/download/r7/osgi.core-7.0.0.pdf) with [OSGi Compendium Release 7](https://osgi.org/download/r7/osgi.cmpn-7.0.0.pdf) is targeted, and newer features should not be used.
 1. [SLF4J](http://slf4j.org) is used for logging.
 

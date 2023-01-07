@@ -8,10 +8,7 @@ title: Pages - Overview Page
 MainUI will automatically generate an Overview page (id:overview).
 This Overview page has four tabs: Overview, Locations, Equipment, and Properties.
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
+[[toc]]
 
 ## Overview Page
 
@@ -179,7 +176,7 @@ config:
   invertText: false
 ```
 
-Place your custom imge files in `$OH_CONF/html`.
+Place your custom image files in `$OPENHAB_CONF/html`.
 Once they are there, you can use the relative path `/static/image.name` as the URL to the image.
 For example, I placed the file `garage.jpg` in `/etc/openhab/html` and referenced it as you see in the YAML above.
 This is how you use a custom image as the background of a card.

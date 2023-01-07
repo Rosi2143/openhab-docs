@@ -15,12 +15,7 @@ For more information on persistence, the default service, and its configuration 
 
 The date-blocks shown in this section are described previously in [Date handling blocks](https://community.openhab.org/t/blockly-reference/128785#date-handling-blocks-31).
 
-{::options toc_levels="2..4"/}
-
-- TOC
-{:toc}
-
-{: #blockly-persistence-overview}
+[[toc]]
 
 ## Overview of the Persistence blocks
 
@@ -33,11 +28,13 @@ For more information on persistence, the default service, and its configuration 
 
 The date-blocks shown in this section are described previously in [Date handling blocks](https://community.openhab.org/t/blockly-reference/128785#date-handling-blocks-31).
 
+More about that topic can be viewed at ![youtube](../images/blockly/youtube-logo-small.png) [Using Persistence data](https://youtu.be/KwhYKy1_qVk?t=1440)
+
 ### Get statistical value of an item
 
 ![statistical-value](../images/blockly/blockly-persistence-get-statistical-value.png)
 
-*Function:* computes any of the below functions for the given item since the time provided by *ZonedDateTime*-Block
+_Function:_ computes any of the below functions for the given item since the time provided by _ZonedDateTime_-Block
 
 - average: gets the average value of the State of a persisted Item since a certain point in time.
 This method uses a time-weighted average calculation
@@ -49,20 +46,35 @@ This method uses a time-weighted average calculation
 - maximum: gets the maximum value of the State of the given Item since a certain point in time
 - maximum: gets the sum of the State of the given Item since a certain point in time
 
-Note:  in case no or 0 values are retrieved, make sure that the item in question is actually persisted.
+In the case of the following two functions the block changes its appearence by replacing the time with an option to chose if the equal value should be skipped or not:
+
+![previous-block](../images/blockly/blockly-persistence-get-previous.png)
+
+- previous state value: Gets the previous state with option to skip to different value as current
+- previous state value time: Gets the time when previous state last occurred with option to skip to different value as current
+
+The skip option set to true allows to search for first state that is different from the current state.
+
+_Important:_ This option is not supported by all persistence databases and may throw an error in that case (for example the standard rrd4j does _not_ support it while influxdb does support it).
+
+Notes: in case no or 0 values are retrieved, make sure that the item in question is actually persisted.
+
+**Previous State Example**
+
+![previous-example](../images/blockly/blockly-persistence-get-previous-example.png)
 
 ### Check item change / update since a point in time
 
 ![item-change](../images/blockly/blockly-persistence-get-item-change.png)
 
-*Function:* checks if an item was updated or changed since a certain point in time
+_Function:_ checks if an item was updated or changed since a certain point in time
 Type: boolean `true` or `false`
 
 ### Provide last updated date of an Item
 
 ![item-updated-date](../images/blockly/blockly-persistence-updated-date.png)
 
-*Function:* Provides the last updated date (including time) of an Item
+_Function:_ Provides the last updated date (including time) of an Item
 Type: ZonedDateTime
 
 ## Return to Blockly Reference
